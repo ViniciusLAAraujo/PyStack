@@ -1,0 +1,22 @@
+Things I did not see in the PDF
+Class 1
+>before url for users
+setting.py add users to INSTALLED_APPS
+import include in django urls
+>add import os to settings and and inside the templates>dirs add the smart pathing 
+os.path.join.....
+>create folder tempaltes in the users app
+>create template folder in base dir, then static, then separete in folders for apps, finally separate the types (js,css,html,img,gif,....)
+>remenber to add {%  csrf_token %} to posts in html files
+>python manage.py migrate
+>from django.contrib.auth.models import User
+>import messagens in setting.py
+>add messages template above the register in html
+>add url for login in users app
+>add new view in users app
+>add template to login, and configure action in form
+>add login logic
+>from django.shortcuts import redirect
+>add logout to users app urls
+>add lougut function to views 
+>add check to see if user is logged in login and register functions 
