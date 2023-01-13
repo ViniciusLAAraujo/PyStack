@@ -8,9 +8,9 @@ from django.shortcuts import redirect
 
 @login_required
 def novo_pet(request):
+    tags = Tag.objects.all()
+    racas = Raca.objects.all()
     if request.method == "GET":
-        tags = Tag.objects.all()
-        racas = Raca.objects.all()
         return render(request, 'novo_pet.html',{'tags':tags,'racas':racas})
     elif request.method == "POST":
         foto = request.FILES.get('foto')
@@ -19,10 +19,23 @@ def novo_pet(request):
         estado = request.POST.get('estado')
         cidade = request.POST.get('cidade')
         telefone = request.POST.get('telefone')
-        tags = request.POST.getlist('tags')
+        tags_selec = request.POST.getlist('tags')
         raca = request.POST.get('raca')
 
-        #TODO: Validar dados
+        if len(nome.strip()) == 0 or len(descricao.strip()) == 0 or len(estado.strip()) == 0 or len(telefone.strip()) == 0 or (raca is None) or len(tags_selec)==0 or (foto is None):
+            messages.add_message(request,constants.ERROR,'Fill all camps!')
+            return redirect('/divulgar/novo_pet')
+
+        valid_raca = racas.filter(id=raca)
+        if not valid_raca:
+            messages.add_message(request,constants.ERROR,'This is not a valid race!')
+            return redirect('/divulgar/novo_pet')
+
+        for tag_id in tags_selec:
+            tag = tags.filter(id=tag_id)
+            if not tag:
+                messages.add_message(request,constants.ERROR,'There is at least one not a valid tag!')
+                return redirect('/divulgar/novo_pet')
 
         pet = Pet(
             usuario=request.user,
@@ -37,13 +50,12 @@ def novo_pet(request):
 
         pet.save()
         
-        for tag_id in tags:
+        for tag_id in tags_selec:
             tag = Tag.objects.get(id=tag_id)
             pet.tags.add(tag)
 
         pet.save()
-        tags = Tag.objects.all()
-        racas = Raca.objects.all()
+
         messages.add_message(request, constants.SUCCESS, 'New pet has been register')
         return render(request, 'novo_pet.html', {'tags': tags, 'racas': racas})
 

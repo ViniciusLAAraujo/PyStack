@@ -11,10 +11,8 @@ def listar_pets(request):
 
         if cidade:
             pets = pets.filter(cidade__icontains=cidade)
-
-        #TODO make a way to filter for all races
         
-        if raca_filter:
+        if raca_filter is not (None or ''):
             pets = pets.filter(raca__id=raca_filter)
             raca_filter = Raca.objects.get(id=raca_filter)
 
