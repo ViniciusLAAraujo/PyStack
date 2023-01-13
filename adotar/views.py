@@ -11,10 +11,12 @@ def listar_pets(request):
 
         if cidade:
             pets = pets.filter(cidade__icontains=cidade)
-        
-        if raca_filter is not (None or ''):
-            pets = pets.filter(raca__id=raca_filter)
-            raca_filter = Raca.objects.get(id=raca_filter)
+
+        if raca_filter is (None or ''):
+            raca_filter = racas
+        elif raca_filter:
+             pets = pets.filter(raca__id=raca_filter)
+             raca_filter = Raca.objects.get(id=raca_filter)
 
         
         return render(request, 'listar_pets.html', {'pets': pets, 'racas': racas, 'cidade': cidade, 'raca_filter': raca_filter})
