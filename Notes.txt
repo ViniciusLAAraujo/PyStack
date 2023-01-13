@@ -1,4 +1,4 @@
-Things I did not see in the PDF
+Things to focus that PDF is not super clear about
 Class 1
 >before url for users
 setting.py add users to INSTALLED_APPS
@@ -19,4 +19,24 @@ os.path.join.....
 >from django.shortcuts import redirect
 >add logout to users app urls
 >add lougut function to views 
->add check to see if user is logged in login and register functions 
+>add check to see if user is logged in login and register functions
+Class 2
+>install the new publish app in settings.py
+>after setting up race use migrate to move model into transfer area and then makemigrations to create the tables
+>setting up adm > manage.py createsuperuser > creat name and password
+>inside publish create the templates folder and put new_pet.html
+>inside base templates insert new_pet.css
+>import from .models, into publish views so they're useable 
+>import the configs for the media files into the main urls.py
+>create url path to you_pets in pyblish, then create the html template as well
+>create the css file for you_pets in the base template folder into the static files
+>add path to remove_pet into publish urls
+>remember to import redirect from django.shortcuts when creating the remove_pet in views
+>add reference to the remove button in your_pets
+>put pet owners verification befora the delition 
+>include new adopt app into settings INSTALED_APPS after you strated it with manage
+>include adopt url to main app urls.py
+>create template folder and file for list_pet
+>send races to list pets {'pets': pets,'racas':racas} in render
+>put the template for and the action for the form inlist_pets
+>send city to so gilter does not reset all the time (remember to add the template to the text box ass well)
