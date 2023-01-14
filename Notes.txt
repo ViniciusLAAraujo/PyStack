@@ -40,3 +40,21 @@ Class 2
 >send races to list pets {'pets': pets,'racas':racas} in render
 >put the template for and the action for the form inlist_pets
 >send city to so gilter does not reset all the time (remember to add the template to the text box ass well)
+Class 3
+>create lookup_pet html template into adopt's templates folder
+>redirect the image in list_pets to the lookup_pet url via template
+>create AskForAdoption model in adopt app
+>import User from contrib auth models and Pet from publish app models
+> when creating the AskFroAdoption view remember to import messages and it`s constants, import datetime, import shorcuts redirect, and the model AskFroAdoption from this on app
+>remember to add the @loginrequired to all views that are not in the Users app (from auth.decorators)
+>add see_adoptions url, view, and html template to publish app
+>do real mails later, for now add EMAIL_BACKEND to settings
+>create the url, nad view for processing adoptions into adopt app
+>make the references in see_adoptions for these processing
+>remember to register the model from other apps in their admin.py (AskForAdoption in adopt app for instance)
+>make the toString/__str__ func to the AskForAdoption model
+>change pet satatus and owner later
+>add dashboard urlmview and html template to publish app
+>add api adoption per race to url and views in publish app
+>crsf_exempt to bypass, so it can be more easly consume as api (also from django.http import JsonResponse)
+>add js script to static file, and chage the label there
